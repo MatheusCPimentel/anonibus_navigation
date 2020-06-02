@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
-
+import PasswordInputText from 'react-native-hide-show-password-input';
 import { AuthContext } from '../context';
 
 import { } from './styles';
@@ -28,12 +28,13 @@ export default SignIn = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.view_fields}>
         <TextInput
+          placeholder={'Digite seu e-mail'}
           style={styles.input_auth}
           onChangeText={text => setTextEmail(text.toLowerCase())}
           value={textEmail} />
 
-        <TextInput
-          style={styles.input_auth}
+        <PasswordInputText
+          placeholder={'Digite sua senha'}
           onChangeText={text => setTextPassword(text)}
           value={textPassword} secureTextEntry={true} />
       </View>
@@ -60,8 +61,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flex: 1,
     borderRadius: 3,
-    margin: 10,
-    marginTop: 0,
     padding: 4
   },
   view_fields: {

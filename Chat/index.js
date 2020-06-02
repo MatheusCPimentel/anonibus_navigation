@@ -19,20 +19,22 @@ export default function Chat() {
 
   const db = firebase.firestore()
 
+
+
   const salvar = () => {
+    if (caixaTexto.length >= 1) {
     api.post('/enviarMensagem', {
       mensagem: caixaTexto,
       usuario: user.name,
       avatar: user.picture,
-    })
-      .then(function () {
+    }).then(function () {
         // setMensagens([...mensagens, caixaTexto])
         setCaixaTexto('')
         scrollview.scrollToEnd({ animated: true })
       }).catch(function () {
-
       })
-  }
+  } }
+
 
   useEffect(() => {
     carregaUsuarioAnonimo()
@@ -120,11 +122,12 @@ export default function Chat() {
         <TextInput
           style={styles.input_mensagem}
           onChangeText={text => setCaixaTexto(text)}
-          value={caixaTexto} />
+          value={caixaTexto}
+          placeholder={' Pelo menos 1 caracter para enviar a mensagem...'} />
 
         <TouchableOpacity onPress={salvar}>
           <Ionicons style={{ margin: 3 }} name="md-send" size={32} color={'#999'} />
-        </TouchableOpacity>
+      </TouchableOpacity>
       </View>
 
 
